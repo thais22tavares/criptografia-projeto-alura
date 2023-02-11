@@ -1,0 +1,126 @@
+<html>
+<head>
+<title>Criptografia com JavaScript</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<style>
+	#li{
+		width: 40px;
+		height: 40px;
+	}
+	.a{
+		width:100px;
+	
+	}
+input{
+background: rgb(132, 171, 229);
+width:35%;
+height:8%;
+color:white;
+border-radius:20px;
+font-size:70%;
+}
+</style>
+</head>
+<body background="criptografia.webp">
+<h1>
+<script language="javascript">
+function Encripta(dados){
+	var mensx="";
+	var l;
+	var i;
+	var j=0;
+	var ch;
+	ch = "assbdFbdpdPdpfPdAAdpeoseslsQQEcDDldiVVkadiedkdkLLnm";
+	for (i=0;i<dados.length; i++){
+		j++;
+		l=(Asc(dados.substr(i,1))+(Asc(ch.substr(j,1))));
+		if (j==50){
+			j=1;
+		}
+		if (l>255){
+			l-=256;
+		}
+		mensx+=(Chr(l));
+	}
+	document.getElementById("1").value=mensx;
+}
+function Descripta(dados){
+	var mensx="";
+	var l;
+	var i;
+	var j=0;
+	var ch;
+	ch = "assbdFbdpdPdpfPdAAdpeoseslsQQEcDDldiVVkadiedkdkLLnm";
+	for (i=0; i<dados.length;i++){
+		j++;
+		l=(Asc(dados.substr(i,1))-(Asc(ch.substr(j,1))));
+		if (j==50){
+			j=1;
+		}
+		if (l<0){
+			l+=256;
+		}
+		mensx+=(Chr(l));
+	}
+	document.getElementById("2").value=mensx;
+}
+function Asc(String){
+	return String.charCodeAt(0);
+}
+
+function Chr(AsciiNum){
+	return String.fromCharCode(AsciiNum)
+}
+</script>
+<center><table width="80%" border="0" cellspacing="0" cellpadding="0" >
+<tr>
+	<img class="a"src="Vector.svg" align="left"><img src="High.svg"><td align="center" style="color:rgb(8, 8, 8)">DADOS A SER CRIPTOGRAFADOS</td>
+<td align="center" style="color:rgb(8, 8, 8)">CRIPTOGRAFIA</td>
+<td align="center"style="color:rgb(8, 8, 8)">DESCRIPTOGRAFIA</td>
+</tr>
+<tr>
+<td align="center"><textarea name="1" id="0" rows="10" cols="30" onKeyPress="return enter(event, this);"></textarea></td>
+<td align="center"><textarea name="2" id="1" rows="10" cols="30" onKeyPress="return enter(event, this);"></textarea></td>
+<td align="center"><textarea name="3" id="2" rows="10" cols="30" onKeyPress="return enter(event, this);"></textarea></td>
+</tr>
+</table></center>
+<div align="center"><br />
+<br />
+<input type="button" value="Limpar Campos" onClick="limpar();" />
+<script language="javascript">
+document.getElementById("0").focus();
+function enter(event, envia){
+	var keyCode = event.keyCode ? event.keyCode : event.which ? event.which : event.charCode;
+	if (keyCode == 13){
+		var dados=document.getElementById(envia.id);
+		var next=(parseInt(envia.id)+1);
+		if(dados.value.lenght<=0){
+			return false;
+		}else{
+			if (envia.id==0){
+				Encripta(dados.value);
+				document.getElementById(next).focus();
+			}else if(envia.id==1){
+				Descripta(dados.value);
+				document.getElementById(next).focus();
+			}else{
+				limpar();
+			}
+			return false;
+		}
+	}else{
+		return true;
+	}
+}
+function limpar(){
+	for (var i=0; i<3;i++){
+		document.getElementById(i).value="";
+	}
+	document.getElementById(0).focus();
+}
+  </script>
+</div>
+<i style="color:rgb(122, 193, 244)">Tainara de Matos Tavares</i>
+<a href="https://www.linkedin.com/in/tainara-de-matos-tavares-6835741b4/"><img id="li"src="linledin.png" rows="1" cols="1"></a>
+</body>
+</html>
